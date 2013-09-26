@@ -2,7 +2,9 @@
 *.o
 
 # Libraries
+*.lib
 *.a
+!lib/libcmockery_la-cmockery.o
 
 # Shared objects (inc. Windows DLLs)
 *.dll
