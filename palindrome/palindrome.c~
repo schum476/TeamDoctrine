@@ -44,7 +44,7 @@ char* palindrome(char* str) {
     answer[0] = 'N';
     answer[1] = 'o';
     answer[2] = '\0';
-  } 
-  free(rev); //Free up rev
+  } //need to free answer where palindrome is called
+  free(rev); //This helped
   return answer;
 }
