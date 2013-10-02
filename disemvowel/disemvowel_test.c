@@ -6,25 +6,33 @@
 #include "disemvowel.h"
 
 void test_empty_str(void) {
-  assert_string_equal("", disemvowel(""));
+char* d = disemvowel("");
+  assert_string_equal("", d);
+  free(d);
 }
 
 void test_no_vowels(void) {
-  assert_string_equal("pqrst", disemvowel("pqrst"));
+char* d = disemvowel("pqrst");
+  assert_string_equal("pqrst", d);
+  free(d);
 }
 
 void test_only_vowels(void) {
-  assert_string_equal("", disemvowel("aeiouAEIOUOIEAuoiea"));
+char* d = disemvowel("aeiouAEIOUOIEAuoiea")'
+  assert_string_equal("", d);
+  free(d);
 }
 
-void test_my_name(void) {
-  assert_string_equal("Nchls Frtg McPh", 
-		      disemvowel("Nicholas Freitag McPhee"));
+void test_my_name(void) {/*For some reason, d doesn't seem to get freed here.  No idea why.*/
+char* d = disemvowel("Nicholas Freitag McPhee");
+  assert_string_equal("Nchls Frtg McPh", d));
+  free(d);
 }
 
 void test_punctuation(void) {
-  assert_string_equal("n (nxplnd) lphnt!", 
-		      disemvowel("An (Unexplained) Elephant!"));
+char* d = disemvowel("An (Unexplained) Elephant!");
+  assert_string_equal("n (nxplnd) lphnt!", d));
+  free(d);
 }
 
 void test_long_string(void) {
@@ -41,10 +49,11 @@ void test_long_string(void) {
     str[i] = 'a';
   }
   str[size-1] = '\0';
-  
-  assert_string_equal("xyz", disemvowel(str));
+  char* d = disemvowel(str);
+  assert_string_equal("xyz", d);
 
   free(str);
+  free(d);
 }
 
 int main(int argc, char* argv[]) {
