@@ -1,0 +1,49 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+#include "array_merge.h"
+
+int* array_merge(int num_arrays, int* sizes, int** values) {
+  int i;
+  int totalSize = 0;
+  for(i = 0; i < num_arrays; ++i) {
+    totalSize += sizes[i];
+  }
+  int* result = calloc(totalSize + 1, sizeof(int));
+  if (num_arrays == 0) {
+    return result;
+  }
+
+  int j;
+  int max = 0;
+  int counter = 0;  
+  for(i = 0; i < num_arrays; i++) {
+    for(j = 0; j < sizes[i]; j++) {
+      result[counter] = values[i][j];
+      if(values[i][j] > max) {
+	max = values[i][j];
+      }
+      counter++;
+    }
+  }
+
+  int* arr = calloc(max, sizeof(int));
+
+  for(i = 0; i < totalSize; i++) {
+    arr[result[i]]++;
+  }
+
+  counter = 1;
+
+  for(i = 0; i <= max; i++) {
+    if(arr[i] > 0) {
+      result[counter] = i;
+      counter++;
+    }
+  }
+
+  free(arr);
+  result[0] = counter-1;
+  return result;
+
+}
